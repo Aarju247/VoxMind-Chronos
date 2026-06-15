@@ -4,6 +4,9 @@ An AI-powered personal productivity assistant that combines voice interaction, i
 
 VoxMind Chronos acts as a "Second Brain" that helps users organize information, manage schedules, capture insights, and interact naturally through voice.
 
+## Project Logo
+<img width="1254" height="1254" alt="WhatsApp Image 2026-06-13 at 14 24 55" src="https://github.com/user-attachments/assets/0afe4ebd-f11f-43c0-bd4e-d2acab3bf4e3" />
+
 ---
 
 ## 🚀 Features
