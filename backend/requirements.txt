@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+python-dotenv
+openai
+pinecone
+pypdf
+google-auth
+google-auth-oauthlib
+google-auth-httplib2
+google-api-python-client
+deepgram-sdk
+elevenlabs
+requests
+websockets
+python-multipart
