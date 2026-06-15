@@ -69,6 +69,48 @@ VoxMind Chronos acts as a "Second Brain" that helps users organize information, 
 
 ---
 
+### 📸 Screenshots
+**Dashboard**
+<img width="1918" height="863" alt="image" src="https://github.com/user-attachments/assets/873825e9-ebc4-4675-95d5-a8c6fbbffc12" />
+<img width="1918" height="867" alt="image" src="https://github.com/user-attachments/assets/2a0e536f-ca8f-4837-a010-619ad8deeee8" />
+
+**Voice Assistant**
+<img width="1917" height="852" alt="image" src="https://github.com/user-attachments/assets/3ccf4d40-da6e-427c-a55e-9ca7f7b2705b" />
+
+**Reminder**
+<img width="1913" height="862" alt="image" src="https://github.com/user-attachments/assets/1a42d496-c1f1-40e5-a9ec-602933fc8ef9" />
+
+**Memory**
+<img width="1918" height="857" alt="image" src="https://github.com/user-attachments/assets/285fd797-976a-449b-a888-34f9d0cb90e0" />
+
+**PDF Chat**
+<img width="1915" height="865" alt="image" src="https://github.com/user-attachments/assets/dc78b9bf-6b76-45f0-a3ce-632a491fcd6e" />
+<img width="1918" height="862" alt="image" src="https://github.com/user-attachments/assets/353aa868-1cf4-4c2f-a6a0-30e7a2cdc8ef" />
+<img width="1918" height="863" alt="image" src="https://github.com/user-attachments/assets/e3963e9a-3f78-46b6-bc6d-b9f1e3a358b2" />
+
+**Tasks**
+<img width="1917" height="861" alt="image" src="https://github.com/user-attachments/assets/c25a354c-8a6c-4d81-944d-ad25a3968881" />
+<img width="1913" height="857" alt="image" src="https://github.com/user-attachments/assets/189a019a-b151-4fb0-8f6b-ac5603b99397" />
+<img width="1918" height="862" alt="image" src="https://github.com/user-attachments/assets/22061167-b114-459f-a070-24fa3fc08a72" />
+<img width="1912" height="862" alt="image" src="https://github.com/user-attachments/assets/40fa4c30-6830-42f7-89b7-7be31fc209b2" />
+
+**Insights**
+<img width="1917" height="872" alt="image" src="https://github.com/user-attachments/assets/c58c4c46-0be4-4ddc-99e4-1523251f0549" />
+
+**Calendar Integration**
+<img width="1918" height="867" alt="image" src="https://github.com/user-attachments/assets/c17e7351-1ed3-4ddd-b8b9-93a791c2b4a6" />
+<img width="1911" height="857" alt="image" src="https://github.com/user-attachments/assets/2346f837-1dba-422d-9184-5c6f104d9e43" />
+<img width="1912" height="867" alt="image" src="https://github.com/user-attachments/assets/6f2d3238-e864-49d9-8071-ae3e24137f65" />
+<img width="1918" height="867" alt="image" src="https://github.com/user-attachments/assets/3929a5a6-6c16-4b68-887c-84d61fae8b0c" />
+
+**Shadow Meeting Mode**
+<img width="1907" height="857" alt="image" src="https://github.com/user-attachments/assets/24c8ec80-78dd-4485-ac11-441fc615be31" />
+<img width="1913" height="955" alt="image" src="https://github.com/user-attachments/assets/40514a27-e97c-4ece-88dc-b41ff391ea84" />
+<img width="1918" height="862" alt="image" src="https://github.com/user-attachments/assets/9e0906ba-6355-4811-93ad-35cb13dac159" />
+<img width="1918" height="863" alt="image" src="https://github.com/user-attachments/assets/c75849eb-91f0-432b-b22a-2a0531b6ab8e" />
+
+---
+
 ## 🏗️ System Architecture
 
 ```text
