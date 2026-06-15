@@ -226,58 +226,7 @@ GOOGLE_REDIRECT_URI=
 * Contextual Memory Systems
 * Meeting Intelligence
 * Productivity Analytics
-
----
-
-## 📸 Screenshots
-
-### Dashboard
-
-![dashboard dark theme](image-1.png)
-
-![dashboard light theme](image-2.png)
-
-### Voice Assistant
-
-![ElevenLab settings](image-3.png)
-
-### Reminder
-
-![alt text](image-15.png)
-
-### Memory
-
-![alt text](image-16.png)
-
-### PDF Chat
-
-![alt text](image-17.png)
-![alt text](image-18.png)
-![alt text](image-19.png)
-
-### Tasks
-![todos](image-20.png)
-![Notes](image-21.png)
-![Events](image-22.png)
-![alt text](image-23.png)
-
-### Insights
-
-![alt text](image-24.png)
-
-### Calendar Integration
-
-![Create Event](image-7.png)
-![alt text](image-8.png)
-![alt text](image-9.png)
-![alt text](image-10.png)
-
-### Shadow Meeting Mode
-
-![alt text](image-11.png)
-![alt text](image-12.png)
-![alt text](image-13.png)
-![alt text](image-14.png)
+  
 ---
 
 ## 🔮 Future Enhancements
