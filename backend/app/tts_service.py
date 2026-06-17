@@ -9,7 +9,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # ── Config ─────────────────────────────────────────────────────
-_API_KEY       = os.getenv("ELEVENLABS_API_KEY", "")
+def _get_api_key() -> str:
+    return os.getenv("ELEVENLABS_API_KEY", "")
 _DEFAULT_VOICE = os.getenv("ELEVENLABS_VOICE_ID", "JBFqnCBsd6RMkjVDRZzb")  # George
 
 # Settings file — persists user preferences across restarts
@@ -41,12 +42,13 @@ def _save_settings(settings: dict):
 
 
 def _get_client() -> ElevenLabs:
-    if not _API_KEY:
+    api_key = _get_api_key()
+    if not api_key:
         raise ValueError(
-            "ELEVENLABS_API_KEY not set in .env. "
+            "ELEVENLABS_API_KEY not set. "
             "Get your key at https://elevenlabs.io"
         )
-    return ElevenLabs(api_key=_API_KEY)
+    return ElevenLabs(api_key=api_key)
 
 
 # ── Public API ─────────────────────────────────────────────────
@@ -134,4 +136,4 @@ def update_settings(updates: dict) -> dict:
 
 
 def is_enabled() -> bool:
-    return bool(_API_KEY) and _load_settings().get("enabled", True)
+    return bool(_get_api_key()) and _load_settings().get("enabled", True)
