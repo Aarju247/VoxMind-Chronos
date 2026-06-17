@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback, useEffect } from "react"
 
-const BASE = "http://localhost:8000"
+const BASE = import.meta.env.VITE_API_URL || "http://localhost:8000"
 
 export default function useTTS() {
   const [speaking,  setSpeaking]  = useState(false)
