@@ -10,7 +10,7 @@ google-auth-oauthlib
 google-auth-httplib2
 google-api-python-client
 deepgram-sdk==3.10.1
-elevenlabs
+elevenlabs==1.50.3
 requests
 websockets
 python-multipart

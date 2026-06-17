@@ -84,22 +84,20 @@ def stream_tts(text: str, voice_id: str = None) -> Iterator[bytes]:
     if len(clean) > 2500:
         clean = clean[:2497] + "..."
 
-    audio_stream = client.text_to_speech.convert_as_stream(
-        text     = clean,
-        voice_id = voice_id or settings["voice_id"],
-        model_id = settings["model_id"],
-        voice_settings = VoiceSettings(
-            stability        = settings["stability"],
-            similarity_boost = settings["similarity_boost"],
-            style            = settings["style"],
-            speed            = settings["speed"],
+    audio_stream = client.text_to_speech.convert(
+        text=clean,
+        voice_id=voice_id or settings["voice_id"],
+        model_id=settings["model_id"],
+        voice_settings=VoiceSettings(
+            stability=settings["stability"],
+            similarity_boost=settings["similarity_boost"],
+            style=settings["style"],
+            speed=settings["speed"],
         ),
-        output_format = "mp3_44100_128",   # high quality MP3
+        output_format="mp3_44100_128",
     )
+    yield audio_stream
 
-    for chunk in audio_stream:
-        if chunk:
-            yield chunk
 
 
 def get_voices() -> list[dict]:
