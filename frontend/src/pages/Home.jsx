@@ -1,3 +1,14 @@
+// ── Mobile detection ──
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
+  useEffect(() => {
+    const handler = () => setIsMobile(window.innerWidth < 768)
+    window.addEventListener("resize", handler)
+    return () => window.removeEventListener("resize", handler)
+  }, [])
+  return isMobile
+}
+
 import { useState, useRef, useEffect } from "react"
 import { 
   Mic, 
@@ -152,6 +163,10 @@ const ChunkCard = ({ chunk, index, theme }) => {
    MAIN COMPONENT
 ───────────────────────────────────────────────────────── */
 const Home = () => {
+
+  /*---mobile---*/
+  const isMobile = useIsMobile()
+  const [sidebarOpen, setSidebarOpen] = useState(false)
 
   /* ── state ── */
   const [theme, setTheme]                 = useState("dark")
@@ -655,14 +670,38 @@ const Home = () => {
   }
 
   return (
-    <div style={{ height: "100vh", background: tokens.bg, color: tokens.text, fontFamily: "'Inter', sans-serif", display: "flex", overflow: "hidden", position: "relative" }}>
+      <div style={{ height: "100svh", background: tokens.bg, color: tokens.text, fontFamily: "'Inter', sans-serif", display: "flex", overflow: "hidden", position: "relative" }}>
+      
+      {/* Mobile overlay */}
+      {isMobile && sidebarOpen && (
+        <div onClick={() => setSidebarOpen(false)} style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.5)", zIndex: 20 }} />
+      )}
       
       {/* Dynamic Ambient Background Glow Elements */}
       <div style={{ position: "absolute", width: "400px", height: "400px", top: "-10%', left: '25%'", background: isDark ? "rgba(139, 92, 246, 0.12)" : "rgba(99, 102, 241, 0.08)", filter: "blur(100px)", pointerEvents: "none", borderRadius: "50%" }} />
       <div style={{ position: "absolute", width: "350px", height: "350px", bottom: "10%", right: "10%", background: isDark ? "rgba(34, 211, 238, 0.08)" : "rgba(6, 182, 212, 0.05)", filter: "blur(80px)", pointerEvents: "none", borderRadius: "50%" }} />
 
       {/* ── SIDEBAR ── */}
-      <aside style={{ ...glass.sidebar(theme), width: "245px", flexShrink: 0, display: "flex", flexDirection: "column", gap: "8px", padding: "16px 12px", height: "100%", overflowY: "auto", zIndex: 10 }}>
+        <aside style={{
+  ...glass.sidebar(theme),
+  width: "245px",
+  flexShrink: 0,
+  display: "flex",
+  flexDirection: "column",
+  gap: "8px",
+  padding: "16px 12px",
+  height: "100%",
+  overflowY: "auto",
+  zIndex: 30,
+  ...(isMobile ? {
+    position: "fixed",
+    left: sidebarOpen ? "0" : "-260px",
+    top: 0,
+    bottom: 0,
+    transition: "left 0.3s ease",
+  } : {})
+}}>
+
         <div style={{ textAlign: "center", padding: "4px 0 12px", flexShrink: 0 }}>
           <div style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "42px", height: "42px", borderRadius: "12px", background: isDark ? "rgba(167,139,250,0.15)" : "#e0e7ff", margin: "0 auto 6px", boxShadow: "0 4px 12px rgba(0,0,0,0.05)" }}>
             <Brain size={24} color={tokens.primary} />
@@ -739,10 +778,17 @@ const Home = () => {
 
         {/* Header Container Matrix */}
         <header style={{ ...glass.card(theme), padding: "14px 20px", display: "flex", alignItems: "center", justifyBetween: "space-between", borderRadius: "16px 16px 0 0", flexShrink: 0, borderBottom: "none" }}>
-          <div>
-            <h1 style={{ fontSize: "18px", fontWeight: 700, color: tokens.primary, margin: 0, textShadow: isDark ? "0 0 12px rgba(139,92,246,0.2)" : "none" }}>VoxMind Chronos</h1>
-            <p style={{ fontSize: "11px", color: tokens.textSecondary, margin: "1px 0 0" }}>Pinecone RAG · Semantic Memory</p>
-          </div>
+          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+              {isMobile && (
+                <button onClick={() => setSidebarOpen(!sidebarOpen)} style={{ background: "transparent", border: `1px solid ${tokens.border}`, borderRadius: "8px", padding: "6px 8px", cursor: "pointer", color: tokens.text, display: "flex", alignItems: "center" }}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                </button>
+              )}
+              <div>
+                <h1 style={{ fontSize: isMobile ? "15px" : "18px", fontWeight: 700, color: tokens.primary, margin: 0, textShadow: isDark ? "0 0 12px rgba(139,92,246,0.2)" : "none" }}>VoxMind Chronos</h1>
+                <p style={{ fontSize: "11px", color: tokens.textSecondary, margin: "1px 0 0" }}>{isMobile ? "AI Second Brain" : "Pinecone RAG · Semantic Memory"}</p>
+              </div>
+            </div>
           <div style={{ display: "flex", gap: "8px", alignItems: "center", marginLeft: "auto" }}>
             {focus?.active && <span style={{ background: isDark ? "rgba(16,185,129,0.2)" : "#d1fae5", border: "1px solid #10b981", borderRadius: "20px", padding: "3px 10px", fontSize: "11px", color: isDark ? "#4ade80" : "#065f46", boxShadow: "0 0 10px rgba(16,185,129,0.1)" }}>🎯 {focus.task}</span>}
             
@@ -792,7 +838,7 @@ const Home = () => {
         </header>
 
         {/* Stats Dashboard Layout Grid */}
-        <div style={{ padding: "6px 12px 10px", background: tokens.surface, borderLeft: `1px solid ${tokens.border}`, borderRight: `1px solid ${tokens.border}`, display: "flex", gap: "6px", flexShrink: 0, backdropFilter: "blur(16px)" }}>
+        <div style={{ padding: "6px 12px 10px", background: tokens.surface, borderLeft: `1px solid ${tokens.border}`, borderRight: `1px solid ${tokens.border}`, display: "flex", gap: "6px", flexShrink: 0, backdropFilter: "blur(16px)", overflowX: isMobile ? "auto" : "visible" }}>
           {dashStats.map(s => (
             <div key={s.label} style={{ flex: 1, background: isDark ? "rgba(30, 41, 59, 0.4)" : "#FFFFFF", border: `1px solid ${tokens.border}`, padding: "8px", borderRadius: "10px", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", boxShadow: "0 2px 6px rgba(0,0,0,0.02)" }}>
               <div style={{ color: s.color, marginBottom: "2px", display: "flex", alignItems: "center" }}>{s.icon}</div>
@@ -1203,6 +1249,9 @@ const Home = () => {
           color: #dc2626 !important;
           background-color: #fee2e2 !important;
         }
+       @media (max-width: 768px) {
+          .shiny-action-pill { font-size: 11px !important; padding: 5px 10px !important; }
+        }   
       `}</style>
       
       {showTTSSettings && (
