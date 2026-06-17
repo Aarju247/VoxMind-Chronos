@@ -409,7 +409,7 @@ const Home = () => {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
       streamRef.current = stream
 
-      const ws = new WebSocket("${WS_BASE}/ws/stt")
+const ws = new WebSocket(`${WS_BASE}/ws/stt`)
       wsRef.current = ws
 
       ws.onopen = () => {
