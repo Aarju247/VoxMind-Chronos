@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-
+const BASE = import.meta.env.VITE_API_URL || "http://localhost:8000"
 const glass = {
   background:          "rgba(15,15,40,0.92)",
   backdropFilter:      "blur(24px)",
@@ -47,7 +47,7 @@ const TTSSettings = ({ tts, onClose }) => {
       loadVoices().finally(() => setLoadingV(false))
     }
     /* Load current settings */
-    fetch("http://localhost:8000/tts/settings")
+fetch(`${BASE}/tts/settings`)
       .then(r => r.json())
       .then(d => {
         setModel(d.model_id     || "eleven_turbo_v2_5")

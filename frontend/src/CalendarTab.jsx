@@ -4,8 +4,7 @@ import {
   Clock, MapPin, Users, Zap, CheckCircle
 } from "lucide-react"
 
-const BASE = "http://localhost:8000"
-
+const BASE = import.meta.env.VITE_API_URL || "http://localhost:8000"
 const glass = {
   card: {
     background: "rgba(255,255,255,0.05)",

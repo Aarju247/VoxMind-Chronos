@@ -21,7 +21,7 @@ load_dotenv()
 
 CLIENT_ID     = os.getenv("GOOGLE_CLIENT_ID")
 CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET")
-REDIRECT_URI  = os.getenv("GOOGLE_REDIRECT_URI", "http://localhost:8000/auth/google/callback")
+REDIRECT_URI  = os.getenv("GOOGLE_REDIRECT_URI", "https://voxmind-chronos-backend.onrender.com/auth/google/callback")
 FRONTEND_URL  = os.getenv("FRONTEND_URL", "http://localhost:5173")
 
 SCOPES = [
