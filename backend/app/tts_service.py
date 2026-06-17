@@ -96,7 +96,9 @@ def stream_tts(text: str, voice_id: str = None) -> Iterator[bytes]:
         ),
         output_format="mp3_44100_128",
     )
-    yield audio_stream
+    for chunk in audio_stream:
+        if chunk:
+            yield chunk
 
 
 
