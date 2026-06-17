@@ -110,10 +110,12 @@ export default function useTTS() {
         if (controller.signal.aborted) return
 
         // Build blob URL and play
-        const blob      = new Blob(chunks, { type: "audio/mpeg" })
-        const url       = URL.createObjectURL(blob)
-        const audio     = new Audio(url)
+        const blob = new Blob(chunks, { type: "audio/mpeg" })
+        const url  = URL.createObjectURL(blob)
+        const audio = new Audio()
         audioRef.current = audio
+        audio.preload = "auto"
+        audio.src = url
 
         audio.onended = () => {
           URL.revokeObjectURL(url)
@@ -125,11 +127,20 @@ export default function useTTS() {
           URL.revokeObjectURL(url)
           setSpeaking(false)
           audioRef.current = null
-          // Fallback to browser TTS on audio error
           browserSpeak(text, onEnd)
         }
+        audio.oncanplaythrough = async () => {
+          try {
+            await audio.play()
+          } catch (err) {
+            URL.revokeObjectURL(url)
+            setSpeaking(false)
+            audioRef.current = null
+            browserSpeak(text, onEnd)
+          }
+        }
+        audio.load()
 
-        await audio.play()
 
       } catch (err) {
         if (err.name === "AbortError") {
