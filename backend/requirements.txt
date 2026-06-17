@@ -9,7 +9,7 @@ google-auth
 google-auth-oauthlib
 google-auth-httplib2
 google-api-python-client
-deepgram-sdk
+deepgram-sdk==3.10.1
 elevenlabs
 requests
 websockets
