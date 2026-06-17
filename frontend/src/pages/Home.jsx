@@ -242,7 +242,7 @@ const Home = () => {
  
         const [d, f] = await Promise.all([
           fetch(`${BASE}/dashboard${qs}`).then(r => r.json()),
-          fetch("${BASE}/focus").then(r => r.json()),
+          fetch('${BASE}/focus').then(r => r.json()),
         ])
         setDashboard(d)
         setFocus(f)
@@ -286,7 +286,9 @@ const Home = () => {
           if ("Notification" in window && Notification.permission === "granted")
             new Notification("VoxMind Reminder", { body: r.task })
         })
-        const f = await fetch("${BASE}/focus").then(r => r.json())
+        
+        const f = await fetch(`${BASE}/focus`).then(r => r.json())
+
         if (f.completed && !focusCompleted) {
           setFocusCompleted(true)
           addSystemMsg(`🎯 Focus completed: ${f.task}`)
@@ -494,7 +496,7 @@ const Home = () => {
       fd.append("file", pdfFile)
 
       setRagStep("🔪 Splitting into chunks…")
-      const res  = await fetch("${BASE}/upload-pdf", { method: "POST", body: fd })
+      const res  = await fetch('${BASE}/upload-pdf', { method: "POST", body: fd })
       const data = await res.json()
 
       if (data.error) { addSystemMsg(`❌ ${data.error}`); return }
@@ -526,7 +528,7 @@ const Home = () => {
     try {
       setRagStep("🔍 Embedding your question…")
       await new Promise(r => setTimeout(r, 400))
-      const res  = await fetch("${BASE}/pdf-chat", {
+      const res  = await fetch('${BASE}/pdf-chat', {
         method:  "POST",
         headers: { "Content-Type": "application/json" },
         body:    JSON.stringify({ filename: pdfName, question: pdfQuestion }),
@@ -554,7 +556,7 @@ const Home = () => {
   const loadMemories = async () => {
     setMemoriesLoading(true)
     try {
-      const r    = await fetch("${BASE}/memories")
+      const r    = await fetch('${BASE}/memories')
       const data = await r.json()
       setMemories(data.memories || [])
       setDashboard(p => ({ ...p, memories: (data.memories || []).length }))
@@ -566,7 +568,7 @@ const Home = () => {
     if (!newFact.trim()) return
     setSavingFact(true)
     try {
-      const r    = await fetch("${BASE}/memories/save", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ fact: newFact.trim() }) })
+      const r    = await fetch('${BASE}/memories/save', { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ fact: newFact.trim() }) })
       const data = await r.json()
       if (data.memory) { setMemories(p => [data.memory, ...p]); setNewFact(""); showMemMsg("✅ Saved to Pinecone!"); setDashboard(p => ({ ...p, memories: p.memories + 1 })) }
     } catch { showMemMsg("❌ Failed to save.") }
@@ -585,7 +587,7 @@ const Home = () => {
     if (!memSearchQuery.trim()) return
     setMemSearching(true)
     try {
-      const r    = await fetch("${BASE}/memories/search", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ query: memSearchQuery, top_k: 5 }) })
+      const r    = await fetch('${BASE}/memories/search', { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ query: memSearchQuery, top_k: 5 }) })
       const data = await r.json()
       setMemSearchResults(data.results || [])
     } catch { showMemMsg("❌ Search failed.") }
@@ -595,7 +597,7 @@ const Home = () => {
   const getInsights = async () => {
     setLoadingInsights(true)
     try {
-      const r = await fetch("${BASE}/ask?question=analyze my productivity")
+      const r = await fetch('${BASE}/ask?question=analyze my productivity')
       setInsights((await r.json()).response)
     } catch (e) { console.error(e) }
     finally { setLoadingInsights(false) }
