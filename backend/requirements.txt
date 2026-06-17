@@ -1,6 +1,7 @@
 fastapi
 uvicorn
 python-dotenv
+groq
 openai
 pinecone
 pypdf
@@ -13,3 +14,6 @@ elevenlabs
 requests
 websockets
 python-multipart
+httpx
+aiofiles
+pydantic
